@@ -1,26 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&family=Cinzel:wght@400;600&display=swap');
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #fdf8f0;
+  --warm-gold: #c9a86a;
+  --deep-maroon: #6b1f2e;
+  --soft-rose: #e8c4b8;
+  --text-dark: #3a2a1f;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--cream);
+  color: var(--text-dark);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+body.locked {
+  overflow: hidden;
+}
+
+.font-script {
+  font-family: 'Great Vibes', cursive;
+}
+
+.font-display {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.15em;
+}
+
+/* Scroll Reveal — multiple variants */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.visible { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-left.visible { 
+  opacity: 1; 
+  transform: translateX(0); 
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-right.visible { 
+  opacity: 1; 
+  transform: translateX(0); 
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-scale.visible { 
+  opacity: 1; 
+  transform: scale(1); 
+}
+
+.reveal-blur {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(30px);
+  transition: opacity 1.4s ease, filter 1.4s ease, transform 1.4s ease;
+  will-change: opacity, filter, transform;
+}
+.reveal-blur.visible { 
+  opacity: 1; 
+  filter: blur(0); 
+  transform: translateY(0); 
+}
+
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+.reveal-delay-4 { transition-delay: 0.6s; }
+.reveal-delay-5 { transition-delay: 0.75s; }
+.reveal-delay-6 { transition-delay: 0.9s; }
+
+/* REMOVED: Laggy letter float animation */
+/* Now using Framer Motion for smooth performance */
+
+/* Floating leaves */
+@keyframes floatLeaf {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+.leaf-float { 
+  animation: floatLeaf 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Slow drift for background orbs */
+@keyframes drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(30px, -40px) scale(1.05); }
+  66%  { transform: translate(-20px, 20px) scale(0.98); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.drift { 
+  animation: drift 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Gold divider */
+.gold-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--warm-gold), transparent);
+  margin: 1.5rem auto;
+}
+
+/* Paper texture */
+.paper-texture {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(107, 31, 46, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Shimmer text */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, var(--deep-maroon) 0%, var(--warm-gold) 50%, var(--deep-maroon) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s linear infinite;
+  will-change: background-position;
+}
+
+/* Scroll indicator */
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(10px); opacity: 1; }
+}
+.bounce-down { 
+  animation: bounceDown 2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Floating petals falling */
+@keyframes petalFall {
+  0%   { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
+}
+.petal {
+  position: absolute;
+  top: -10vh;
+  border-radius: 50% 0 50% 0;
+  pointer-events: none;
+  animation: petalFall linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Hero always-animating gradient */
+@keyframes heroGlow {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.08); }
+}
+.hero-glow { 
+  animation: heroGlow 7s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Slow rotate for decorative rings */
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.slow-rotate { 
+  animation: slowRotate 60s linear infinite;
+  will-change: transform;
+}
+
+/* Equalizer bars */
+@keyframes eq {
+  0%, 100% { height: 20%; }
+  50%      { height: 100%; }
+}
+.eq-bar { 
+  animation: eq 0.9s ease-in-out infinite;
+  will-change: height;
+}
+
+/* Vinyl spin */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.vinyl-spin { 
+  animation: spinSlow 8s linear infinite;
+  will-change: transform;
+}
+.vinyl-paused { 
+  animation-play-state: paused; 
+}
+
+/* Loader ring draw */
+@keyframes ringDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Heartbeat */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25%      { transform: scale(1.15); }
+  50%      { transform: scale(1); }
+  75%      { transform: scale(1.1); }
+}
+.heartbeat { 
+  animation: heartbeat 2s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Soft pulse */
+@keyframes softPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 106, 0.4); }
+  50%      { box-shadow: 0 0 0 20px rgba(201, 168, 106, 0); }
+}
+.soft-pulse { 
+  animation: softPulse 2.4s ease-out infinite;
+  will-change: box-shadow;
+}
+
+/* Bougainvillea drift with sway */
+@keyframes bougainFall {
+  0% {
+    transform: translate(0, -30px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(40px, 50vh) rotate(180deg);
+  }
+  100% {
+    transform: translate(-30px, 105vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Gentle sway for the tree as a whole */
+@keyframes treeSway {
+  0%, 100% { transform: rotate(-0.8deg); }
+  50%      { transform: rotate(0.8deg); }
+}
+.tree-sway { 
+  animation: treeSway 10s ease-in-out infinite; 
+  transform-origin: bottom center;
+  will-change: transform;
 }
