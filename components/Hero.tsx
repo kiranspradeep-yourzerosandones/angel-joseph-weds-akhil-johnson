@@ -42,10 +42,23 @@ export default function Hero() {
     setPetals(newPetals);
   }, []);
 
+  // ✅ Hero tap - ONLY plays music (won't stop it)
+  const handleHeroTap = () => {
+    const audio = document.querySelector('audio') as HTMLAudioElement | null;
+    if (!audio) return;
+    
+    // Only play if paused, don't toggle
+    if (audio.paused) {
+      audio.volume = 0.4;
+      audio.play().catch((err) => console.log('Play blocked:', err));
+    }
+  };
+
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden cursor-pointer"
+      onClick={handleHeroTap}
     >
       {/* Premium gradient background */}
       <motion.div
@@ -258,7 +271,7 @@ export default function Hero() {
               transition={{ duration: 3, repeat: Infinity }}
             />
             <p className="font-display text-sm md:text-base tracking-[0.2em] text-[#3a2a1f] font-light">
-              01 · JANUARY · 2027
+              10 · JANUARY · 2027
             </p>
             <motion.span
               className="h-px w-8 bg-gradient-to-l from-transparent to-[#c9a86a]"

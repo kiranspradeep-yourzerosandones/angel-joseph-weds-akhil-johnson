@@ -52,7 +52,6 @@ export default function Home() {
             <Couple />
             <Countdown />
             <Events />
-            <Location />
             <Gallery />
             <RSVP />
             <Footer />

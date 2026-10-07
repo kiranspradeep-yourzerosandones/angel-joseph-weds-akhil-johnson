@@ -54,7 +54,7 @@ export default function Couple() {
                   Palliparambil House
                 </p>
                 <p className="text-xs tracking-[0.15em] text-[#6b1f2e]/60 uppercase font-light">
-                  Ernakulam
+                 KUMBALAM,Ernakulam
                 </p>
               </div>
 

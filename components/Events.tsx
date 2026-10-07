@@ -18,7 +18,7 @@ const events: WeddingEvent[] = [
   {
     title: 'Holy Matrimony',
     malayalam: 'വിവാഹം',
-    date: 'February 14, 2025',
+  date: 'january 10, 2027',
     time: '10:30 AM',
     venue: 'Little Flower Roman Catholic Church',
     address: 'Ernakulam, Kerala',
@@ -30,9 +30,9 @@ const events: WeddingEvent[] = [
   {
     title: 'Reception',
     malayalam: 'സൽക്കാരം',
-    date: 'February 14, 2025',
+    date: 'january 10, 2027',
     time: '7:00 PM',
-    venue: 'Vihara By CMK',
+    venue: 'VIHARA BY CMK MARADU ERNAKULAM',
     address: 'Ernakulam, Kerala',
     icon: '🥂',
     mapUrl:

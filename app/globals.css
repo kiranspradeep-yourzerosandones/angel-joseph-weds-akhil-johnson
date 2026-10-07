@@ -103,9 +103,6 @@ body.locked {
 .reveal-delay-5 { transition-delay: 0.75s; }
 .reveal-delay-6 { transition-delay: 0.9s; }
 
-/* REMOVED: Laggy letter float animation */
-/* Now using Framer Motion for smooth performance */
-
 /* Floating leaves */
 @keyframes floatLeaf {
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -280,4 +277,78 @@ body.locked {
   animation: treeSway 10s ease-in-out infinite; 
   transform-origin: bottom center;
   will-change: transform;
+}
+
+/* ═════════════════════════════════════════════════════
+   ZOOM, PINCH & DRAG PREVENTION (but allow scrolling)
+   ═════════════════════════════════════════════════════ */
+
+/* Disable default touch behaviors */
+html {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-zoom: fixed;
+  -moz-user-zoom: fixed;
+  -ms-user-zoom: fixed;
+}
+
+body {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-drag: none;
+}
+
+/* Allow scrolling on all devices */
+@media (hover: none) and (pointer: coarse) {
+  html {
+    touch-action: auto;
+    -webkit-touch-action: auto;
+  }
+  body {
+    touch-action: auto;
+    -webkit-touch-action: auto;
+  }
+}
+
+/* Prevent dragging images */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+/* Prevent dragging links/buttons */
+a, button, [role="button"] {
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* iOS Safari specific - allow scrolling */
+@supports (-webkit-touch-callout: none) {
+  html {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  body {
+    -webkit-user-select: none;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    overflow-x: hidden;
+    -webkit-touch-action: auto;
+  }
+
+  input, textarea, select {
+    -webkit-user-select: text;
+    font-size: 16px;
+  }
+}
+
+/* Allow text selection in content */
+.prose, p, span {
+  -webkit-user-select: text;
+  user-select: text;
 }
